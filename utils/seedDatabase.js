@@ -20,18 +20,21 @@ const seedDatabase = async () => {
         MuscleGroup: "Arms, Tricep",
         description: "Using a dumbell users should ...",
         RecomendedReps: 10
+    
     }),
     User.create({ 
       firstName: "Daniel",
       lastName:"Dolan",
       email:"dolan@gmail.com",
       weight:170, 
+      exerciseId:2
     }),
     User.create({ 
       firstName: "Dante",
       lastName:"Angelone",
       email:"dangelone@gmail.com",
-      weight:165
+      weight:165,
+      exerciseId:1
      }),
   ]);
 };
