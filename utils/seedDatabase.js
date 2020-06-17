@@ -17,20 +17,44 @@ const seedDatabase = async () => {
         description: "Using a bench press, users can push up the bar and slowly repeat",
         recomendedReps: 7
     }),
-    Exercise.create({
-        name: "Hammer Curl",
-       muscleGroup: "Arms, Tricep",
-       imageUrl: "https://images.unsplash.com/photo-1585342565162-3704ff9b221d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80",
-        description: "Using a dumbell users should ...",
-        recomendedReps: 10
-    
-    }),
-    Exercise.create({
-      name: "waaa Curl",
-     muscleGroup: "Arms, Tricep",
-     imageUrl: "https://images.unsplash.com/photo-1585342565162-3704ff9b221d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80",
-      description: "Using a dumbell users should ...",
-      recomendedReps: 10
+  Exercise.create({
+    name: "Side Plank",
+   muscleGroup: "Abs",
+   imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Side_Plank.jpg/900px-Side_Plank.jpg",
+    description: "Laying directly on side, hold tightly to feel stretch of obliques.  ",
+    recomendedReps: 10
+  
+  }),
+  Exercise.create({
+    name: "Bicep curling",
+   muscleGroup: "Arms",
+   imageUrl: "https://images.unsplash.com/photo-1578229353624-a4007142da75?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1300&q=80",
+    description: "Can use a barbell or bar, simply curl the weight and squeeze for best results.",
+    recomendedReps: 10
+  
+  }),
+  Exercise.create({
+    name: "Tricep Push Down",
+   muscleGroup: "Arms",
+   imageUrl: "https://images.unsplash.com/photo-1582442467598-c2cffc9b1d54?ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80",
+    description: "Pull the rope in a downwards motion squeezing the tricep.",
+    recomendedReps: 10
+  
+  }),
+  Exercise.create({
+    name: "Hammer Curl",
+   muscleGroup: "Arms",
+   imageUrl: "https://images.unsplash.com/photo-1585342565162-3704ff9b221d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80",
+    description: "Using a dumbell held veritcally, users should push/pull the dumbell up and down, squeezing the bicep and tricep",
+    recomendedReps: 10
+  
+  }),
+  Exercise.create({
+    name: "Bent-over Row",
+   muscleGroup: "Back",
+   imageUrl: "https://images.unsplash.com/photo-1566241142364-df7f478ce55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80",
+    description: "Using a dumbell or barbell, bend the body to stretch the back, pull the weight back to contract back muscles. ",
+    recomendedReps: 10
   
   }),
     User.create({ 
