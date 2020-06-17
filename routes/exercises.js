@@ -3,45 +3,33 @@ var router = express.Router();
 const { Exercise, User } = require("../database/models");
 
 /* GET all exercises. */
-// /api/campuses
+// /api/exercises
 router.get("/", async (req, res, next) => {
-  // try to get campuses object from database
   try {
-    // campuses will be the result of the Campus.findAll promise
     const exercises = await Exercise.findAll({ include: User });
-    // if campuses is valid, it will be sent as a json response
+    // if exercises is valid, it will be sent as a json response
     console.log(exercises);
     res.status(200).json(exercises);
   } catch (err) {
-    // if there is an error, it'll passed via the next parameter to the error handler middleware
     next(err);
   }
 });
 
-// Route to serve single campus based on its id
-// /api/campuses/:id
-// /api/campuses/456 would respond with a campus with id 456
+//exercise based on its id
 
 router.get("/:id", async (req, res, next) => {
-  // take the id from params
+  
   const { id } = req.params;
-  // query the database for a campus with matching id
-  try {
-    // if successful:
-    const exercise = await Exercise.findByPk(id, { include: User });
 
-    // send back the campus as a response
+  try {
+    const exercise = await Exercise.findByPk(id, { include: User });
     res.status(200).json(exercise);
   } catch (err) {
-    // if error:
-    // handle error
     next(err);
   }
 });
 
-// Route to get students associated with a campus
-// /api/campuses/:id/students
-// /api/campuses/456/students
+//get users associated with exercises
 router.get("/:id/users", async (req, res, next) => {
   const { id } = req.params;
   // find the campus associated with the id
@@ -59,18 +47,17 @@ router.get("/:id/users", async (req, res, next) => {
     next(err);
   }
 
-  // find the students associated with the campus
-  // send back an array of students
+//send back array of users
 });
 
 
-// Route to handle adding a campus
-// /api/campuses/
+// Route to handle adding a exercise
+// /api/exercises/
 router.post("/", async (req, res, next) => {
   // Take the form data from the request body
   const { Name, MuscleGroup, description, RecomendedReps } = req.body;
-  // Create a campus object
-  const campusObj = {
+  // Create a exercise obj
+  const exerciseObj = {
     Name: Name,
     MuscleGroup: MuscleGroup,
     description: description,
@@ -79,17 +66,15 @@ router.post("/", async (req, res, next) => {
   try {
     // Create a new campus on the database
     const newExercise = await Exercise.create(exerciseObj);
-    // The database would return a campus
-    // send that campus as a json to the client
+    // The database would return a exercise
+    // send that exercise as a json to the client
     res.status(201).send(newExercise);
   } catch (err) {
     next(err);
   }
 });
 
-// Route to handle editing a campus
-// /api/campuses/:id
-// /api/campuses/456 would modify a campus with id 456
+//edit exercise
 
 router.put("/:id", async (req, res, next) => {
   // get the id from request params
@@ -104,17 +89,17 @@ router.put("/:id", async (req, res, next) => {
   };
   try {
     // if successfull:
-    // Find a campus with a matching id from the database
+    // Find a exercise with matching id from database
     const exercise = await Exercise.findByPk(id, { include: User });
     // database would return a valid campus object or an error
     console.log(updatedObj);
-    // modify the campus object with new form data
+    // modify the exercise object with new form data
     await exercise.set(updatedObj);
     // save the new campus object to the data
-    // database would return a new campus object
+    // database would return a new exercise object
     const updatedExercise = await exercise.save();
     console.log(updatedExercise);
-    // send the newCampus as a response from the API
+    // send the newExercise as a response from the API
     res.status(201).send(updatedExercise);
   } catch (err) {
     // if error:
@@ -123,10 +108,10 @@ router.put("/:id", async (req, res, next) => {
   }
 });
 
-// Route to handle removing a campus
+// Route to handle removing a exercise
 router.delete("/:id", async (req, res, next) => {
   const { id } = req.params;
-  // get an id for a campus to delete
+  // get an id for an exercise to delete
   try {
     // pass the id to the database to find campus to be deleted
     // database would either respond succcess or fail
