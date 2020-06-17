@@ -6,6 +6,7 @@ const seedDatabase = async () => {
     Exercise.create({
       name: "Push Ups",
      muscleGroup: "Back, Chest",
+      imageUrl: "https://unsplash.com/photos/EPrjIYQrpkU",
       description: "Users can push ther body in a upwards motion from the ground",
       recomendedReps: 5
     }),
