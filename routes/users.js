@@ -13,4 +13,68 @@ router.get("/", async (req,res, next) => {
       next(err);
     }
   });
+  router.get("/:id", async (req, res,next) =>{
+    //Takes the Id
+    const{ id } = req.params;
+    //Query the database
+    try{
+      const user = await User.findByPk(id, {include: Exercise});
+      //send back the student as a repsonse
+      res.status(200).json(user);
+    } catch(err){
+       // if error:
+      // handle error
+      next(err);
+    }
+  });
+  
+  router.post("/", async (req, res,next) =>{
+    //Take the form data
+    const { firstName, lastName, email, weight,} = req.body;
+  
+    //Create a new student entity//
+    const userObj = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      weight:weight,
+    };
+    try {
+      const newUser = await User.create(userObj);
+      res.status(201).send(newUser);
+    } catch(err){
+      next(err);
+    }
+  });
+  
+  router.put("/:id", async (req,res,next) => {
+    const { id } = req.params;
+    const { firstName, lastName, email, weight,} = req.body;
+  
+    const updatedObj = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      weight:weight,
+    };
+    try{
+      const user = await User.findByPk( id );
+      await user.set(updatedObj);
+      const updatedUser = await user.save();
+      res.status(201).send(updatedUser);
+    } catch (err) {
+      next(err);
+    }
+  })
+  
+  router.delete("/:id", async(req, res, next) => {
+    const { id } = req.params;
+    try{
+      const user = await User.findByPk(id);
+      await user.destroy();
+      res.sendStatus(204);
+    } catch(err) {
+      next(err);
+    }
+  });
   module.exports = router;

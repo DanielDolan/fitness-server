@@ -3,6 +3,7 @@ const db = require("../db");
 const crypto = require("crypto");
 
 const User = db.define("user", {
+<<<<<<< HEAD
   // firstName: { type: Sequelize.STRING, allowNull: false },
   // lastName: {type: Sequelize.STRING, allowNull: false},
   // email: {type: Sequelize.STRING, allNull: false },
@@ -27,6 +28,12 @@ const User = db.define("user", {
   googleId: {
     type: Sequelize.STRING
   }
+=======
+  firstName: { type: Sequelize.STRING, allowNull: false },
+  lastName: {type: Sequelize.STRING, allowNull: false},
+  email: {type: Sequelize.STRING, allNull: false },
+  weight: {type: Sequelize.INTEGER, allNull: false},
+>>>>>>> f8eb727a5b8977d0aa9861757a7acfb4d786446f
 });
 
 User.generateSalt = function() {
