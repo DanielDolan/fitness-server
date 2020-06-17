@@ -5,21 +5,21 @@ const seedDatabase = async () => {
   await Promise.all([
     Exercise.create({
       name: "Push Ups",
-      MuscleGroup: "Back, Chest",
+      muscleGroup: "Back, Chest",
       description: "Users can push ther body in a upwards motion from the ground",
-      RecomendedReps: 5
+      recomendedReps: 5
     }),
     Exercise.create({
         name: "Bench Press",
-        MuscleGroup: "Chest",
+        muscleGroup: "Chest",
         description: "Using a bench press, users can push up the bar and slowly repeat",
-        RecomendedReps: 7
+        recomendedReps: 7
     }),
     Exercise.create({
         name: "Hammer Curl",
-        MuscleGroup: "Arms, Tricep",
+        muscleGroup: "Arms, Tricep",
         description: "Using a dumbell users should ...",
-        RecomendedReps: 10
+        recomendedReps: 10
     
     }),
     User.create({ 
