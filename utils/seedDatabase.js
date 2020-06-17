@@ -13,12 +13,14 @@ const seedDatabase = async () => {
     Exercise.create({
         name: "Bench Press",
         muscleGroup: "Chest",
+        imageUrl: "https://unsplash.com/photos/V3GnMeRhnjk",
         description: "Using a bench press, users can push up the bar and slowly repeat",
         recomendedReps: 7
     }),
     Exercise.create({
         name: "Hammer Curl",
        muscleGroup: "Arms, Tricep",
+       imageUrl: "https://unsplash.com/photos/FoSF9-4xTGg",
         description: "Using a dumbell users should ...",
         recomendedReps: 10
     
