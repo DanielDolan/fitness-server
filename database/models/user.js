@@ -3,37 +3,23 @@ const db = require("../db");
 const crypto = require("crypto");
 
 const User = db.define("user", {
-<<<<<<< HEAD
-  // firstName: { type: Sequelize.STRING, allowNull: false },
-  // lastName: {type: Sequelize.STRING, allowNull: false},
-  // email: {type: Sequelize.STRING, allNull: false },
-  // Weight: {type: Sequelize.INTEGER, allNull: false},
-  email: {
-    type: Sequelize.STRING,
-    unique: true,
-    allowNull: false
-  },
-  password: {
-    type: Sequelize.STRING,
-    get() {
-      return () => this.getDataValue("password");
-    }
-  },
+  firstName: { type: Sequelize.STRING, allowNull: false },
+  lastName: {type: Sequelize.STRING, allowNull: false},
+  email: {type: Sequelize.STRING, allNull: false },
+  weight: {type: Sequelize.INTEGER, allNull: false},
+  googleId: {type: Sequelize.STRING},
   salt: {
     type: Sequelize.STRING,
     get() {
       return () => this.getDataValue("salt");
     }
   },
-  googleId: {
-    type: Sequelize.STRING
+  password: {
+    type: Sequelize.STRING,
+    get() {
+      return () => this.getDataValue("password");
+    }
   }
-=======
-  firstName: { type: Sequelize.STRING, allowNull: false },
-  lastName: {type: Sequelize.STRING, allowNull: false},
-  email: {type: Sequelize.STRING, allNull: false },
-  weight: {type: Sequelize.INTEGER, allNull: false},
->>>>>>> f8eb727a5b8977d0aa9861757a7acfb4d786446f
 });
 
 User.generateSalt = function() {

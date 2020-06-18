@@ -11,14 +11,21 @@
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",
     "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
     "debug": "~2.6.9",
     "dotenv": "^8.2.0",
-    "express": "~4.16.1",
+    "express": "^4.17.1",
+    "express-session": "^1.16.2",
+    "passport": "^0.4.0",
+    "pg": "^7.12.1",
     "helmet": "^3.22.0",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "pgtools": "^0.3.0",
-    "sequelize": "^5.21.12"
+    "sequelize": "^5.21.12",
+    "connect-session-sequelize": "^6.0.0",
+    "crypto": "^1.0.1",
+
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
