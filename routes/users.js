@@ -32,12 +32,13 @@ router.get("/", async (req,res, next) => {
     //Take the form data
     const { firstName, lastName, email, weight,} = req.body;
   
-    //Create a new student entity//
+    //Create a new user entity//
     const userObj = {
       firstName: firstName,
       lastName: lastName,
       email: email,
       weight:weight,
+      // password: password
     };
     try {
       const newUser = await User.create(userObj);
@@ -49,13 +50,14 @@ router.get("/", async (req,res, next) => {
   
   router.put("/:id", async (req,res,next) => {
     const { id } = req.params;
-    const { firstName, lastName, email, weight,} = req.body;
+    const { firstName, lastName, email, weight, password} = req.body;
   
     const updatedObj = {
       firstName: firstName,
       lastName: lastName,
       email: email,
       weight:weight,
+      password: password
     };
     try{
       const user = await User.findByPk( id );
