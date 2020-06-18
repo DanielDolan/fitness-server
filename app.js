@@ -26,6 +26,7 @@ const passport = require("passport");
 const cors = require("cors");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const sessionStore = new SequelizeStore({ db });
+const authRouter = require("./auth");
 
 // A helper function to sync our database;
 const syncDatabase = () => {
@@ -70,7 +71,7 @@ const configureApp = () => {
   app.use(express.urlencoded({ extended: false }));
   app.use(compression());
   app.use(cookieParser());
-  app.use(cors({ credentials: true, origin: 'http://localhost:3002' }))
+  app.use(cors({ credentials: true, origin: 'http://localhost:3000' }))
 
   app.use(
     session({
@@ -86,7 +87,6 @@ const configureApp = () => {
 
   // Our apiRouter
   const apiRouter = require("./routes/index");
-  const authRouter = require("./auth/");
   
 
   // Mount our apiRouter
@@ -111,19 +111,19 @@ const configureApp = () => {
   });
 };
 
-const startListening = () => {
-  const PORT = 5000;
-  app.listen(PORT, () => {
-    console.log(`Listening on port ${PORT}!!!`);
-  })
-}
+// const startListening = () => {
+//   const PORT = 5000;
+//   app.listen(PORT, () => {
+//     console.log(`Listening on port ${PORT}!!!`);
+//   })
+// }
 
 // Main function declaration;
 const bootApp = async () => {
   await syncDatabase();
   await configureApp();
   await sessionStore.sync();
-  await startListening();
+  // await startListening();
 };
 
 // Main function invocation;
