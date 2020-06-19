@@ -88,6 +88,14 @@ const seedDatabase = async () => {
     recomendedReps: 10
   
   }),
+  Exercise.create({
+    name: "Deadlift ",
+   muscleGroup: "Back",
+   imageUrl: "https://images.unsplash.com/photo-1534438097545-a2c22c57f2ad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80",
+    description: "Using proper form like in the picture, users should pull the bar upwards with lo weight for high reps ",
+    recomendedReps: 16
+  
+  }),
     User.create({ 
       firstName: "Daniel",
       lastName:"Dolan",
