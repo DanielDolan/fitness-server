@@ -20,6 +20,13 @@ const seedDatabase = require("./utils/seedDatabase");
 // Our database instance;
 const db = require("./database");
 
+const session = require("express-session");
+const passport = require("passport");
+const cors = require("cors");
+const SequelizeStore = require("connect-session-sequelize")(session.Store);
+const sessionStore = new SequelizeStore({ db });
+const authRouter = require("./auth");
+
 // A helper function to sync our database;
 const syncDatabase = () => {
   if (process.env.NODE_ENV === "production") {
@@ -38,6 +45,18 @@ const syncDatabase = () => {
   }
 };
 
+passport.serializeUser((user, done) => done(null, user.id));
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await db.models.user.findByPk(id);
+    done(null, user);
+  }
+  catch (err) {
+    done(err);
+  }
+});
+
+
 // Instantiate our express application;
 const app = express();
 
@@ -50,13 +69,27 @@ const configureApp = () => {
   app.use(express.urlencoded({ extended: false }));
   app.use(compression());
   app.use(cookieParser());
+  app.use(cors({ credentials: true, origin: 'http://localhost:3000' }))
+
+  app.use(
+    session({
+      secret: "a super secretive secret key string to encrypt and sign the cookie",
+      store: sessionStore,
+      resave: false,
+      saveUninitialized: false
+    })
+  );
+
+  app.use(passport.initialize());
+  app.use(passport.session());
 
   // Our apiRouter
   const apiRouter = require("./routes/index");
+  
 
   // Mount our apiRouter
   app.use("/api", apiRouter);
-
+  app.use("/auth", authRouter);
   // Error handling;
   app.use((req, res, next) => {
     if (path.extname(req.path).length) {
@@ -76,10 +109,19 @@ const configureApp = () => {
   });
 };
 
+// const startListening = () => {
+//   const PORT = 5000;
+//   app.listen(PORT, () => {
+//     console.log(`Listening on port ${PORT}!!!`);
+//   })
+// }
+
 // Main function declaration;
 const bootApp = async () => {
   await syncDatabase();
   await configureApp();
+  await sessionStore.sync();
+  // await startListening();
 };
 
 // Main function invocation;

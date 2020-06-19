@@ -102,6 +102,7 @@ const seedDatabase = async () => {
       email:"dolan@gmail.com",
       weight:170, 
       exerciseId:2
+      // password:"adfadfasd"
     }),
     User.create({ 
       firstName: "Dante",
