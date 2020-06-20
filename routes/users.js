@@ -30,7 +30,7 @@ router.get("/", async (req,res, next) => {
   
   router.post("/", async (req, res,next) =>{
     //Take the form data
-    const { firstName, lastName, email, weight,} = req.body;
+    const { firstName, lastName, email, weight,weightGoal, height, age, birthday} = req.body;
   
     //Create a new user entity//
     const userObj = {
@@ -38,6 +38,10 @@ router.get("/", async (req,res, next) => {
       lastName: lastName,
       email: email,
       weight:weight,
+      weightGoal: weightGoal,
+      height: height,
+      age: age,
+      birthday: birthday
       // password: password
     };
     try {
@@ -50,14 +54,18 @@ router.get("/", async (req,res, next) => {
   
   router.put("/:id", async (req,res,next) => {
     const { id } = req.params;
-    const { firstName, lastName, email, weight, password} = req.body;
+    const { firstName, lastName, email, weight, password, weightGoal, height, age, birthday} = req.body;
   
     const updatedObj = {
       firstName: firstName,
       lastName: lastName,
       email: email,
       weight:weight,
-      password: password
+      password: password,
+      weightGoal: weightGoal,
+      height: height,
+      age: age,
+      birthday: birthday
     };
     try{
       const user = await User.findByPk( id );
