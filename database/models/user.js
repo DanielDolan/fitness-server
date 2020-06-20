@@ -8,7 +8,7 @@ const User = db.define("user", {
   email: {type: Sequelize.STRING, allNull: false },
   weight: {type: Sequelize.INTEGER, allNull: false},
   weightGoal: {type: Sequelize.INTEGER, allNull: false},
-  height: {type: Sequelize.INTEGER, allNull: false},
+  height: {type: Sequelize.STRING, allNull: false},
   age: {type: Sequelize.INTEGER, allNull: false},
   birthday: {type: Sequelize.DATE, allNull: false},
   // userImage: {type: Sequelize., allNull: false},
