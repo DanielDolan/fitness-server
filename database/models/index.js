@@ -3,9 +3,8 @@
 const Exercise = require("./exercise");
 const User = require("./user");
 
-Exercise.hasMany(User);
-
-User.belongsTo(Exercise);
+User.hasMany(Exercise);
+Exercise.belongsTo(User);
 
 module.exports = {
   Exercise,
