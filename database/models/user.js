@@ -11,6 +11,7 @@ const User = db.define("user", {
   height: {type: Sequelize.STRING, allNull: false},
   age: {type: Sequelize.INTEGER, allNull: false},
   birthday: {type: Sequelize.DATEONLY, allNull: false},
+  // exerciseGroup: {type: Sequelize.ARRAY(Sequelize.INTEGER), allNull: true},
   // userImage: {type: Sequelize., allNull: false},
   googleId: {type: Sequelize.STRING},
   salt: {

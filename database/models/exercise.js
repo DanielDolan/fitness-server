@@ -2,7 +2,8 @@ const Sequelize = require("sequelize");
 const db = require("../db");
 
 const Exercise = db.define("exercise", {
-  name: { type: Sequelize.STRING, allowNull: false },
+  exerciseName: { type: Sequelize.STRING, allowNull: false },
+  displayName: { type: Sequelize.STRING, allowNull: false },
   muscleGroup: { type: Sequelize.STRING, allowNull: false },
   imageUrl: {
     type: Sequelize.STRING,

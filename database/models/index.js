@@ -5,6 +5,8 @@ const User = require("./user");
 
 User.hasMany(Exercise);
 Exercise.belongsTo(User);
+Exercise.belongsToMany(User, {through: 'UserExercise'});
+User.belongsToMany(Exercise, {through: 'UserExercise'});
 
 module.exports = {
   Exercise,
