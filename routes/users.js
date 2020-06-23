@@ -140,10 +140,10 @@ router.post('/addExercise', async (req, res, next) => {
 
 router.post('/removeExercise', async (req, res, next) => {
   let foundUser,foundExercise;
-  console.log("req : ",req.body.userid)
+  console.log("req : ",req.body.userID)
   try {
-     foundUser = await User.findOne({ where: { id: req.body.userid } });
-     foundExercise = await Exercise.findOne({where: {id: req.body.exerciseid}});
+     foundUser = await User.findOne({ where: { id: req.body.userID } });
+     foundExercise = await Exercise.findOne({where: {id: req.body.exerciseID}});
   }
   catch (err) {
     next(err);
@@ -153,9 +153,10 @@ router.post('/removeExercise', async (req, res, next) => {
    console.log("found exercise:    ",foundExercise)
 
   try {
-     exerciseOfUser = await foundUser.removeExercises(foundExercise);  // remember those methods Sequelize provides?;
+     await foundUser.removeExercise(foundExercise);  // remember those methods Sequelize provides?;
   }
   catch (err) {
+    console.log("++++++++++++++error++++++++++++++++")
     next(err);
   }
 
