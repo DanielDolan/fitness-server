@@ -125,5 +125,30 @@ router.delete("/:id", async (req, res, next) => {
   }
 });
 
+// GET http://localhost:3001/api/exercises/:id/users;
+// We want to get a list of all of the players who are trained by a particular trainer;
+
+router.get('/:id/user', async (req, res, next) => {
+  let foundExercise;
+
+  try {
+    foundExercise = await Exercise.findOne({ where: { id: req.params.id } });
+  }
+  catch (err) {
+    next(err);
+  }
+
+  let usersOfExercise;
+
+  try {
+    usersOfExercise = await foundExercise.getUsers();  // remember those methods Sequelize provides?;
+  }
+  catch (err) {
+    next(err);
+  }
+
+  res.status(200).json(usersOfExercise);
+});
+
 
 module.exports = router;

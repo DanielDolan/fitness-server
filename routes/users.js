@@ -4,7 +4,7 @@ const { Exercise, User } = require("../database/models");
 
 
 //Route to get All Students//
-router.get("/", async (req,res, next) => {
+  router.get("/", async (req,res, next) => {
     try{
       const users = await User.findAll({ include: Exercise});
       console.log(users);
@@ -87,4 +87,79 @@ router.get("/", async (req,res, next) => {
       next(err);
     }
   });
+
+  // GET http://localhost:3001/api/user/:id/exercise;
+// We want to get a list of all of the exercise from a particular user;
+
+router.get('/:id/exercise', async (req, res, next) => {
+  let foundUser;
+
+  try {
+    foundUser = await User.findOne({ where: { id: req.params.id } });
+  }
+  catch (err) {
+    next(err);
+  }
+
+  let exerciseOfUser;
+
+  try {
+    exerciseOfUser = await foundUser.getExercises();  // remember those methods Sequelize provides?;
+  }
+  catch (err) {
+    next(err);
+  }
+
+  res.status(200).json(exerciseOfUser);
+});
+
+router.post('/addExercise', async (req, res, next) => {
+  let foundUser,foundExercise;
+  console.log("req : ",req.body.userID)
+  console.log("req : ",req.body.exerciseID)
+  try {
+     foundUser = await User.findOne({ where: { id: req.body.userID } });
+     foundExercise = await Exercise.findOne({where: {id: req.body.exerciseID}});
+  }
+  catch (err) {
+    next(err);
+  }
+
+  let exerciseOfUser;
+   console.log("found exercise:    ",foundExercise)
+
+  try {
+     exerciseOfUser = await foundUser.addExercise(foundExercise);  // remember those methods Sequelize provides?;
+  }
+  catch (err) {
+    next(err);
+  }
+
+  res.status(200).json(exerciseOfUser);
+});
+
+router.post('/removeExercise', async (req, res, next) => {
+  let foundUser,foundExercise;
+  console.log("req : ",req.body.userid)
+  try {
+     foundUser = await User.findOne({ where: { id: req.body.userid } });
+     foundExercise = await Exercise.findOne({where: {id: req.body.exerciseid}});
+  }
+  catch (err) {
+    next(err);
+  }
+
+  let exerciseOfUser;
+   console.log("found exercise:    ",foundExercise)
+
+  try {
+     exerciseOfUser = await foundUser.removeExercises(foundExercise);  // remember those methods Sequelize provides?;
+  }
+  catch (err) {
+    next(err);
+  }
+
+  res.status(200).json(exerciseOfUser);
+});
+
   module.exports = router;
